@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chatbot-viva"
+version = "1.0.0"
+description = "Vietnamese Real Estate Legal RAG Chatbot"
+requires-python = ">=3.10"
+dependencies = [
+    "python-dotenv>=1.0.0",
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.27.0",
+    "requests>=2.31.0",
+    "pytz>=2024.1",
+    "pydantic>=2.0.0",
+    "rank-bm25>=0.2.2",
+    "langchain-core>=0.3.0",
+    "langchain-community>=0.3.0",
+    "langchain-openai>=0.2.0",
+    "langchain-qdrant>=0.2.0",
+    "qdrant-client>=1.9.0",
+    "tavily-python>=0.3.0",
+    "langchain-google-genai>=2.0.0",
+    "langfuse>=2.0.0",
+    "langchain>=0.3.0",
+    "pymongo[srv]>=4.6.0",
+    "psycopg[binary]>=3.1.0",
+    "psycopg_pool>=3.1.0",
+    "langchain-tavily>=0.2.11",
+    "PyJWT>=2.8.0",
+    "bcrypt>=4.1.0",
+    "email-validator>=2.1.0",
+]
+
+[project.optional-dependencies]
+anthropic = ["langchain-anthropic>=0.2.0"]
+redis = ["redis>=5.0.0"]
+voice = [
+    "websockets>=12.0",
+    "edge-tts>=6.1.0",
+    "openai>=1.12.0",
+    "numpy>=1.24.0",
+    "num2words>=0.5.13",
+]
+voice-groq = ["groq>=0.4.0"]
+voice-vieneu = ["vieneu>=0.1.0"]
+voice-torch = ["torch>=2.0.0"]
+prod = [
+    "httptools>=0.6.0",
+]
+dev = [
+    "autopep8",
+    "pycodestyle",
+    "ipython",
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.4.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I"]
+ignore = ["E501"]
